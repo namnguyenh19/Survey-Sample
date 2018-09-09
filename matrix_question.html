@@ -1,0 +1,41 @@
+<br><br>
+
+<div class="container" ng-controller="matrixTable">
+    <input class="row form-control bg-light qTitle" type="text" name="qTitle" ng-model="matrixQ" ng-hide="isPreview" placeholder="Click to write question text">
+    <h6 ng-show="isPreview">{{matrixQ}}</h6>
+
+    <div class="container">
+        <div class="row" id="matrixHeader">
+            <div class="col-md-3"></div>
+            <div class="col-md-9" >
+                    <span class="matrixRange" id="grid">
+                        <span class="col rangeBlock" ng-repeat="item in rangeCol">
+                            <span ng-hide="isPreview">
+                                <input type="text" class="form-control bg-light rankItem" ng-model="range[$index]" placeholder="Write range">
+                            </span>
+                            <span ng-show="isPreview">
+                                {{range[$index]}}
+                            </span>
+                        </span>
+                    </span>
+            </div>
+        </div>
+
+        <div class="row" id="matrixBody" ng-repeat="item in rangeRow">
+
+            <div class="col-md-3" ng-hide="isPreview">
+                <input type="text" class="form-control bg-light rankItem" ng-model="statements[$index]" placeholder="Click to write Item 1">
+            </div>
+            <div class="col-md-3" ng-show="isPreview">{{statements[$index]}}</div>
+            <div class="col-md-9">
+                <form class="form-check form-check-inline" id="grid">
+                    <input class="form-check-input" id="radio" name="rating" type="radio" ng-repeat="item in rangeCol">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
+        <span class="fas fa-sign-in-alt"> Preview</span>
+    </button>
+</div>

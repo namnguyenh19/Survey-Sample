@@ -1,0 +1,41 @@
+<br><br>
+
+<div class="container" ng-controller="rankingQuestion">
+    <div class="container bg-light border">
+        <div class="row">
+            <div class="col-md-1 border-right">
+                <div class="row">
+                    <input type="checkbox" checked="checked">
+                    <h5 class="text-center">Q{{q}}</h5>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" ng-click="isPreview=false">
+                    <i class="fas fa-cog"></i>
+                </button>
+
+            </div>
+            <div class="col-md-11">
+                <input class="row form-control bg-light qTitle" type="text" name="qTitle" ng-model="rankQ" ng-hide="isPreview" placeholder="Click to write question text">
+                <h6 ng-show="isPreview">{{rankQ}}</h6>
+                <div class="row">
+                    <div class="col-md-11">
+                            <span ng-hide="isPreview">
+                                <input type="text" class="form-control bg-light rankItem" ng-repeat="i in rangeRow" ng-model="items[$index].text" placeholder="Click to write Item {{$index+1}}">
+                            </span>
+                        <span ng-show="isPreview">
+                                <ul ui-sortable ng-model="items">
+                                <li class="form-control bg-light rankItem" ng-repeat="item in items">{{ item.text }}</li>
+                                </ul>
+                            </span>
+                    </div>
+                    <div class="col-md-1">
+                        <span class="btn btn-secondary rankItem" ng-repeat="i in rangeRow">{{$index+1}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
+        <span class="fas fa-sign-in-alt"> Preview</span>
+    </button>
+</div>

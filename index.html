@@ -8,54 +8,53 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Survey Sample</title>
 </head>
-<body ng-app="SurveySample">
+<body ng-app="SurveySample" ng-controller="questionCreation">
 
     <h1>Survey Question Example</h1>
 
-    <h2>Ranking Question</h2>
-    <div class="container" ng-controller="rankingQuestion">
-        <div class="container bg-light border">
-            <div class="row">
-                <div class="col-md-1 border-right">
-                    <div class="row">
-                        <input type="checkbox" checked="checked">
-                        <h5 class="text-center">Q9</h5>
-                    </div>
-                    <button type="button" class="btn btn-default btn-sm" ng-click="isPreview=false">
-                        <i class="fas fa-cog"></i>
-                    </button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Create a question
+    </button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">New Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="col-md-11">
-                    <input class="row form-control bg-light qTitle" type="text" name="qTitle" ng-model="rankQ" ng-hide="isPreview" placeholder="Click to write question text">
-                    <h6 ng-show="isPreview">{{rankQ}}</h6>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <span ng-hide="isPreview">
-                                <input type="text" class="form-control bg-light rankItem" ng-model="items[0].text" placeholder="Click to write Item 1">
-                                <input type="text" class="form-control bg-light rankItem" ng-model="items[1].text" placeholder="Click to write Item 2">
-                                <input type="text" class="form-control bg-light rankItem" ng-model="items[2].text"placeholder="Click to write Item 3">
-                            </span>
-                            <span ng-show="isPreview">
-                                <ul ui-sortable ng-model="items">
-                                <li class="form-control bg-light rankItem" ng-repeat="item in items">{{ item.text }}</li>
-                                </ul>
-                            </span>
-                        </div>
-                        <div class="col-md-1">
-                            <span class="btn btn-secondary rankItem">1</span>
-                            <span class="btn btn-secondary rankItem">2</span>
-                            <span class="btn btn-secondary rankItem">3</span>
-                        </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Question Type</label>
+                        <select class="form-control" ng-model="questionType" ng-change="checkQType()">
+                            <option value="ranking">Ranking Question</option>
+                            <option value="matrix">Matrix Table</option>
+                        </select>
+                        <span ng-show="isMatrix">
+                            <input style="margin: 10px;" type="number" name="column" ng-model="numCol" placeholder="Number of columns"/>
+                        </span>
+                        <br>
+                        <input style="margin: 10px;" type="number" name="row" ng-model="numRow" placeholder="Number of rows"/>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Create</button>
                 </div>
             </div>
         </div>
-
-        <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
-            <span class="fas fa-sign-in-alt"> Preview</span>
-        </button>
     </div>
+
+    <div ng-repeat="q in arrayMatrix" ng-include="'matrix_question.html'">
+    </div>
+
+    <div ng-repeat="q in arrayRanking" ng-include="'ranking_question.html'">
+    </div>
+
 
 
     <!-- jQuery first, then Popper.js, Bootstrap JS, jQuery UI  -->

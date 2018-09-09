@@ -27,8 +27,28 @@
     margin: 10px;
 }
 
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+.matrixRange{
+    display: inline-block;
+}
+
+.matrixRange .rangeBlock{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+#grid #radio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#matrixBody{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
