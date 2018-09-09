@@ -8,10 +8,9 @@
                     <input type="checkbox" checked="checked">
                     <h5 class="text-center">Q{{q}}</h5>
                 </div>
-                <button type="button" class="btn btn-default btn-sm" ng-click="isPreview=false">
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#rankingModal">
                     <i class="fas fa-cog"></i>
                 </button>
-
             </div>
             <div class="col-md-11">
                 <input class="row form-control bg-light qTitle" type="text" name="qTitle" ng-model="rankQ" ng-hide="isPreview" placeholder="Click to write question text">
@@ -23,12 +22,37 @@
                             </span>
                         <span ng-show="isPreview">
                                 <ul ui-sortable ng-model="items">
-                                <li class="form-control bg-light rankItem" ng-repeat="item in items">{{ item.text }}</li>
+                                    <li class="form-control bg-light rankItem" ng-repeat="item in items">{{ item.text }}</li>
                                 </ul>
                             </span>
                     </div>
                     <div class="col-md-1">
                         <span class="btn btn-secondary rankItem" ng-repeat="i in rangeRow">{{$index+1}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="rankingModal" tabindex="-1" role="dialog" aria-labelledby="rankingModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <br>
+                            <input style="margin: 10px;" type="number" name="row" ng-model="numRow" placeholder="Number of rows"/>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editRow()">Create</button>
                     </div>
                 </div>
             </div>

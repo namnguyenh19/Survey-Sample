@@ -17,8 +17,8 @@ angular.module('SurveySample', ['ui.sortable'])
 
         var numQuestion = 0;
         $scope.update = function () {
-            $scope.rangeRow = populateArray($scope.rangeRow, $scope.numRow);
-            $scope.rangeCol = populateArray($scope.rangeCol, $scope.numCol);
+            $scope.rangeRow = $scope.populateArray($scope.rangeRow, $scope.numRow);
+            $scope.rangeCol = $scope.populateArray($scope.rangeCol, $scope.numCol);
 
             console.log($scope.rangeCol.toString());
 
@@ -34,7 +34,7 @@ angular.module('SurveySample', ['ui.sortable'])
             numQuestion += 1;
         }
 
-        var populateArray = function (array, num) {
+        $scope.populateArray = function (array, num) {
             var array = [];
             for(i=0; i<num; i++){
                 array.push(i);
@@ -57,6 +57,17 @@ angular.module('SurveySample', ['ui.sortable'])
         $scope.items = [];
         $scope.rankQ = "";
         $scope.isPreview = false;
+
+        $scope.editRow = function () {
+            $scope.isPreview = false;
+            if($scope.numRow > $scope.items.length){
+                $scope.items.push("");
+            }
+            else{
+                $scope.items.pop();
+            }
+            $scope.rangeRow = $scope.populateArray($scope.rangeRow, $scope.numRow);
+        }
     }])
     .controller("matrixTable", ["$scope", function ($scope) {
         $scope.range = [];
