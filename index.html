@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>Survey Sample</title>
+</head>
+<body ng-app="SurveySample">
+
+    <h1>Survey Question Example</h1>
+
+    <h2>Ranking Question</h2>
+    <div class="container" ng-controller="rankingQuestion">
+        <div class="container bg-light border">
+            <div class="row">
+                <div class="col-md-1 border-right">
+                    <div class="row">
+                        <input type="checkbox" checked="checked">
+                        <h5 class="text-center">Q9</h5>
+                    </div>
+                    <button type="button" class="btn btn-default btn-sm" ng-click="isPreview=false">
+                        <i class="fas fa-cog"></i>
+                    </button>
+
+                </div>
+                <div class="col-md-11">
+                    <input class="row form-control bg-light qTitle" type="text" name="qTitle" ng-model="rankQ" ng-hide="isPreview" placeholder="Click to write question text">
+                    <h6 ng-show="isPreview">{{rankQ}}</h6>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <span ng-hide="isPreview">
+                                <input type="text" class="form-control bg-light rankItem" ng-model="items[0].text" placeholder="Click to write Item 1">
+                                <input type="text" class="form-control bg-light rankItem" ng-model="items[1].text" placeholder="Click to write Item 2">
+                                <input type="text" class="form-control bg-light rankItem" ng-model="items[2].text"placeholder="Click to write Item 3">
+                            </span>
+                            <span ng-show="isPreview">
+                                <ul ui-sortable ng-model="items">
+                                <li class="form-control bg-light rankItem" ng-repeat="item in items">{{ item.text }}</li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="col-md-1">
+                            <span class="btn btn-secondary rankItem">1</span>
+                            <span class="btn btn-secondary rankItem">2</span>
+                            <span class="btn btn-secondary rankItem">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
+            <span class="fas fa-sign-in-alt"> Preview</span>
+        </button>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, Bootstrap JS, jQuery UI  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/g/jquery@1,jquery.ui@1.10%28jquery.ui.core.min.js+jquery.ui.widget.min.js+jquery.ui.mouse.min.js+jquery.ui.sortable.min.js%29,angularjs@1.2,angular.ui-sortable"></script>
+    <script src="js/sortable.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
