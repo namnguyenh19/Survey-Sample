@@ -11,7 +11,7 @@
                     <input type="checkbox" checked="checked">
                     <h5 class="text-center">Q{{q}}</h5>
                 </div>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#rankingModal">
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#matrixModal">
                     <i class="fas fa-cog"></i>
                 </button>
             </div>
@@ -47,7 +47,35 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="matrixModal" tabindex="-1" role="dialog" aria-labelledby="matrixModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <br>
+                            <input style="margin: 10px;" type="number" name="column" ng-model="numCol" placeholder="Number of columns"/>
+                            <input style="margin: 10px;" type="number" name="row" ng-model="numRow" placeholder="Number of rows"/>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editMatrix()">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 
     <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
         <span class="fas fa-sign-in-alt"> Preview</span>

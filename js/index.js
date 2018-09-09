@@ -32,7 +32,7 @@ angular.module('SurveySample', ['ui.sortable'])
             }
 
             numQuestion += 1;
-        }
+        };
 
         $scope.populateArray = function (array, num) {
             var array = [];
@@ -41,7 +41,7 @@ angular.module('SurveySample', ['ui.sortable'])
             }
 
             return array;
-        }
+        };
 
         $scope.checkQType = function () {
             if($scope.questionType == "matrix"){
@@ -67,7 +67,7 @@ angular.module('SurveySample', ['ui.sortable'])
                 $scope.items.pop();
             }
             $scope.rangeRow = $scope.populateArray($scope.rangeRow, $scope.numRow);
-        }
+        };
     }])
     .controller("matrixTable", ["$scope", function ($scope) {
         $scope.range = [];
@@ -76,4 +76,23 @@ angular.module('SurveySample', ['ui.sortable'])
         // $scope.statements = ["Alli is ugly", "Crystal is beautiful", "Nam is good Nam will finish this exercise"];
         $scope.matrixQ = "";
         $scope.isPreview = false;
+
+        $scope.editMatrix = function () {
+            $scope.isPreview = false;
+            if($scope.numRow > $scope.statements.length){
+                $scope.statements.push("");
+            }
+            else{
+                $scope.statements.pop();
+            }
+            $scope.rangeRow = $scope.populateArray($scope.rangeRow, $scope.numRow);
+
+            if($scope.numCol > $scope.range.length){
+                $scope.range.push("");
+            }
+            else{
+                $scope.range.pop();
+            }
+            $scope.rangeCol = $scope.populateArray($scope.rangeCol, $scope.numCol);
+        }
     }]);
