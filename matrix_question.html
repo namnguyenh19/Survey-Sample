@@ -5,9 +5,20 @@
     <h6 ng-show="isPreview">{{matrixQ}}</h6>
 
     <div class="container">
-        <div class="row" id="matrixHeader">
-            <div class="col-md-3"></div>
-            <div class="col-md-9" >
+        <div class="row">
+            <div class="col-md-1 border-right">
+                <div class="row">
+                    <input type="checkbox" checked="checked">
+                    <h5 class="text-center">Q{{q}}</h5>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#rankingModal">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+            <div class="col-md-11">
+                <div class="row" id="matrixHeader">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9" >
                     <span class="matrixRange" id="grid">
                         <span class="col rangeBlock" ng-repeat="item in rangeCol">
                             <span ng-hide="isPreview">
@@ -18,21 +29,24 @@
                             </span>
                         </span>
                     </span>
+                    </div>
+                </div>
+
+                <div class="row" id="matrixBody" ng-repeat="item in rangeRow">
+
+                    <div class="col-md-3" ng-hide="isPreview">
+                        <input type="text" class="form-control bg-light rankItem" ng-model="statements[$index]" placeholder="Click to write Item 1">
+                    </div>
+                    <div class="col-md-3" ng-show="isPreview">{{statements[$index]}}</div>
+                    <div class="col-md-9">
+                        <form class="form-check form-check-inline" id="grid">
+                            <input class="form-check-input" id="radio" name="rating" type="radio" ng-repeat="item in rangeCol">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row" id="matrixBody" ng-repeat="item in rangeRow">
-
-            <div class="col-md-3" ng-hide="isPreview">
-                <input type="text" class="form-control bg-light rankItem" ng-model="statements[$index]" placeholder="Click to write Item 1">
-            </div>
-            <div class="col-md-3" ng-show="isPreview">{{statements[$index]}}</div>
-            <div class="col-md-9">
-                <form class="form-check form-check-inline" id="grid">
-                    <input class="form-check-input" id="radio" name="rating" type="radio" ng-repeat="item in rangeCol">
-                </form>
-            </div>
-        </div>
     </div>
 
     <button type="button" class="btn btn-primary right" ng-click="isPreview=true">
